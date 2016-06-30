@@ -1,0 +1,57 @@
+<html lang="es-pe" ng-app="ng-autocomplete">
+<head>
+  <title>Autocomplete from remote data - Material Angular</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.css">
+</head>
+<body>
+  <!--Your HTML content here -->
+
+  <div ng-controller="DemoCtrl as ctrl" layout="column" ng-cloak="">
+    <md-content class="md-padding">
+      <!-- <p ng-repeat="contact in ctrl.contactsSelected">{{contact.name}}  <md-button class="md-raised md-warn" ng-click="ctrl.contactsSelectedRemove(contact)">Remove</md-button></p> -->
+      <form ng-submit="$event.preventDefault()">
+        <md-autocomplete id="contactAc"
+                         md-selected-item="ctrl.selectedItem"
+                         md-search-text="ctrl.searchText"
+                         md-selected-item-change="ctrl.selectedItemChange(item)"
+                         md-items="item in ctrl.querySearch(ctrl.searchText)"
+                         md-item-text="item.name"
+                         md-min-length="0"
+                         md-no-cache="true"
+                         placeholder="Add Contact...">
+          <md-item-template>
+            <span md-highlight-text="ctrl.searchText" md-highlight-flags="^i">{{item.name}}</span>
+          </md-item-template>
+          <md-not-found>
+            No contact matching "{{ctrl.searchText}}" was found.
+          </md-not-found>
+        </md-autocomplete>
+        <!-- <h2>Currently Loaded Contacts from JSON</h2>
+        <p ng-repeat="contact in ctrl.contactsLoaded">{{contact.name}}</p> -->
+      </form>
+    </md-content>
+  </div>
+
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0-rc2/angular-material.min.js"></script>
+
+  <!-- Your application bootstrap  -->
+  <script src="autocomplete.js"></script>
+  <script type="text/javascript">
+    /**
+     * You must include the dependency on 'ngMaterial'
+     */
+    //angular.module('BlankApp', ['ngMaterial']);
+  </script>
+
+</body>
+</html>
